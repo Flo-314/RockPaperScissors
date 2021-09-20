@@ -15,53 +15,42 @@ function computerPlay() {
   return computerDecision;
 }
 
-//Primary function.
 function game() {
+  const playerSelection = "rock";
+  const computerSelection = computerPlay();
+  let computerScore = 0;
+  let playerScore = 0;
 
   // function that evaluates who wins
   function playRound(playerSelection, computerDecision) {
-    let resultCheck
-    //function that checks if the player win
-    function isWin() {
-      if (
-        (playerSelection == "scissors" && computerDecision == "paper") ||
-        (playerSelection == "rock" && computerDecision == "scissors") ||
-        (playerSelection == "paper" && computerDecision == "rock")
-      ) {
-        resultCheck = "win";
-      }
+    let resultCheck;
+    //checks if the player win
+    if (
+      (playerSelection == "scissors" && computerDecision == "paper") ||
+      (playerSelection == "rock" && computerDecision == "scissors") ||
+      (playerSelection == "paper" && computerDecision == "rock")
+    ) {
+      resultCheck = "win";
+      playerScore++;
     }
-    //function that checks if the player looses
-    function isLoose() {
-      if (
-        (playerSelection == "paper" && computerDecision == "scissors") ||
-        (playerSelection == "scissors" && computerDecision == "rock") ||
-        (playerSelection == "rock" && computerDecision == "paper")
-      ) {
-        resultCheck = "loose";
-      }
+    //checks if the player looses
+    else if (
+      (playerSelection == "paper" && computerDecision == "scissors") ||
+      (playerSelection == "scissors" && computerDecision == "rock") ||
+      (playerSelection == "rock" && computerDecision == "paper")
+    ) {
+      resultCheck = "loose";
+      computerScore++;
     }
-    // function that checks if is a tie
-    function isTie() {
-      if (playerSelection == computerDecision) {
-        resultCheck = "its tie";
-      }
+    //checks if is a tie
+    else if (playerSelection == computerDecision) {
+      resultCheck = "its tie";
     }
-  isWin()
-  isLoose()
-  isTie()
-  return resultCheck
+
+    return resultCheck;
   }
-  //function loops while the number N is higher than rounds
-  function gameRound(n) {
-    let rounds = 0;
-    while (n > rounds) {
-      // call computerPlay and playerPlay to give an input for playRound, and next return an string (tie, loose or win) for n times
-      computerDecision = computerPlay();
-      let result = playRound("rock", computerDecision);
-      rounds++
-      return result;
-    }
+  while (computerScore < 5 || playerScore < 5) {
+    computerScore = 5;
+    console.log(playRound(playerSelection, computerSelection));
   }
-  return gameRound(3);
 }
