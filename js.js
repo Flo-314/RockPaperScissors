@@ -17,9 +17,9 @@ function computerPlay() {
 
 function game() {
   const playerSelection = "rock";
-  const computerSelection = computerPlay();
-  let computerScore = 0;
-  let playerScore = 0;
+  let computerSelection = computerPlay();
+  var computerScore = 0;
+  var playerScore = 0;
 
   // function that evaluates who wins
   function playRound(playerSelection, computerDecision) {
@@ -49,8 +49,11 @@ function game() {
 
     return resultCheck;
   }
-  while (computerScore < 5 || playerScore < 5) {
-    computerScore = 5;
-    console.log(playRound(playerSelection, computerSelection));
+  while (computerScore < 5 || playerScore < 5 ) {
+    let computerSelection = computerPlay();
+    let playerSelection = prompt()
+    playerSelection = playerSelection.toLowerCase()
+    playRound(playerSelection, computerSelection)
+     console.log(playRound(playerSelection, computerSelection));
   }
 }
