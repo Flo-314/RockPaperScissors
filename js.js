@@ -17,7 +17,6 @@ function computerPlay() {
 
 function game() {
   const playerSelection = "rock";
-  let computerSelection = computerPlay();
   var computerScore = 0;
   var playerScore = 0;
 
