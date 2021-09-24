@@ -1,12 +1,15 @@
-// comptuer score
-//var player score
-
 //const's vars of the document
 const rockBtn = document.querySelector("#rockbutton");
 const paperBtn = document.querySelector("#paperbutton");
 const scissorBtn = document.querySelector("#scissorsbutton");
 const playerS = document.querySelector(".playerS");
 const machineS = document.querySelector(".machineS");
+const body = document.querySelector("body");
+// div for the stattus every "hand" (wiin/loose status)
+const divStatus = document.createElement("div");
+divStatus.classList.add("Status");
+body.appendChild(divStatus);
+
 // Execute the game(relative parameter for each id ) when click happen
 rockBtn.addEventListener("click", () => {
   game("rock");
@@ -17,7 +20,21 @@ paperBtn.addEventListener("click", () => {
 scissorBtn.addEventListener("click", () => {
   game("scissors");
 });
-// TESTEEEEEEEO
+// animation when mouse is over
+rockBtn.addEventListener("mouseover", putBorders);
+rockBtn.addEventListener("mouseleave", leaveBorders);
+scissorBtn.addEventListener("mouseover", putBorders);
+scissorBtn.addEventListener("mouseleave", leaveBorders);
+paperBtn.addEventListener("mouseover", putBorders);
+paperBtn.addEventListener("mouseleave", leaveBorders);
+//function that put "yellowborder" class when mouse is over
+function putBorders() {
+  this.classList.add("yellowborders");
+}
+
+function leaveBorders() {
+  this.classList.remove("yellowborders");
+}
 
 // Randomly picking  rock paper or scissors for IA.
 function computerPlay() {
@@ -38,18 +55,18 @@ function computerPlay() {
 //primary function
 var computerScore = 0;
 var playerScore = 0;
+var resultCheck = "Result of the round ";
 function game(playerSelection) {
   let computerSelection = computerPlay();
   // function that evaluates who wins
   function playRound(playerSelection, computerDecision) {
-    let resultCheck;
     //checks if the player win
     if (
       (playerSelection == "scissors" && computerDecision == "paper") ||
       (playerSelection == "rock" && computerDecision == "scissors") ||
       (playerSelection == "paper" && computerDecision == "rock")
     ) {
-      resultCheck = "win";
+      resultCheck = "Result of the round:¡YOU WIN THIS ROUND!";
       playerScore++;
     }
     //checks if the player looses
@@ -58,15 +75,13 @@ function game(playerSelection) {
       (playerSelection == "scissors" && computerDecision == "rock") ||
       (playerSelection == "rock" && computerDecision == "paper")
     ) {
-      resultCheck = "loose";
+      resultCheck = "Result of the round: U loose this round";
       computerScore++;
     }
     //checks if is a tie
     else if (playerSelection == computerDecision) {
-      resultCheck = "its tie";
+      resultCheck = "Result of the round: Just a tie";
     }
-
-    return resultCheck;
   }
   //  while (computerScore < 5 || playerScore < 5 ) {
   //  let computerSelection = computerPlay();
@@ -75,5 +90,7 @@ function game(playerSelection) {
   playRound(playerSelection, computerSelection);
   machineS.textContent = "Computer score:" + " " + +computerScore;
   playerS.textContent = "Player score:" + " " + +playerScore;
+  divStatus.textContent = resultCheck;
+
   //}
 }

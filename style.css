@@ -5,6 +5,9 @@ body {
   justify-content: center;
   flex: 1, 0, auto;
   background-color: gray;
+  color: yellow;
+  font-weight:bolder;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 .container {
   display: flex;
@@ -49,4 +52,14 @@ img {
   width: 150px;
   height: 300px;
   margin: 35px
+}
+
+.yellowborders{
+    transform: scale(1.1);
+    border-color: yellow;
+    box-shadow: 0 0 20px yellow;
+}
+.Status{
+    font-size: 40px;
+    color:aqua;
 }
