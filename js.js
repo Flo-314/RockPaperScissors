@@ -1,3 +1,24 @@
+// comptuer score
+//var player score
+
+//const's vars of the document
+const rockBtn = document.querySelector("#rockbutton");
+const paperBtn = document.querySelector("#paperbutton");
+const scissorBtn = document.querySelector("#scissorsbutton");
+const playerS = document.querySelector(".playerS");
+const machineS = document.querySelector(".machineS");
+// Execute the game(relative parameter for each id ) when click happen
+rockBtn.addEventListener("click", () => {
+  game("rock");
+});
+paperBtn.addEventListener("click", () => {
+  game("paper");
+});
+scissorBtn.addEventListener("click", () => {
+  game("scissors");
+});
+// TESTEEEEEEEO
+
 // Randomly picking  rock paper or scissors for IA.
 function computerPlay() {
   // random picker
@@ -14,12 +35,11 @@ function computerPlay() {
   // returning the string
   return computerDecision;
 }
-
-function game() {
-  const playerSelection = "rock";
-  var computerScore = 0;
-  var playerScore = 0;
-
+//primary function
+var computerScore = 0;
+var playerScore = 0;
+function game(playerSelection) {
+  let computerSelection = computerPlay();
   // function that evaluates who wins
   function playRound(playerSelection, computerDecision) {
     let resultCheck;
@@ -48,11 +68,12 @@ function game() {
 
     return resultCheck;
   }
-  while (computerScore < 5 || playerScore < 5 ) {
-    let computerSelection = computerPlay();
-    let playerSelection = prompt()
-    playerSelection = playerSelection.toLowerCase()
-    playRound(playerSelection, computerSelection)
-     console.log(playRound(playerSelection, computerSelection));
-  }
+  //  while (computerScore < 5 || playerScore < 5 ) {
+  //  let computerSelection = computerPlay();
+  //let playerSelection = prompt()
+  //playerSelection = playerSelection.toLowerCase()
+  playRound(playerSelection, computerSelection);
+  machineS.textContent = "Computer score:" + " " + +computerScore;
+  playerS.textContent = "Player score:" + " " + +playerScore;
+  //}
 }
